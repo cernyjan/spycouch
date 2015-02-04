@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html><head>
+<title>spycouch.__init__</title>
+</head>
+<body style="background-color:#FFFFFF;color:#000000"><a NAME="top" ID="top"></a>
+<h1 style="background-color:#FFFFFF;color:#0000FF">spycouch.__init__</h1>
+<p>
+name: Simple Python API for CouchDB 
+autor: &#268;ern&#253; Jan
+email: cerny.jan@hotmail.com
+version: 0.1
+license: viz. LICENSE
+</p><p>
+
+</p><p>
+example of use:
+</p><p>
+from spycouch import *
+couch = Couch('localhost')
+couch.create_db("test-db")
+print couch.list_of_dbs()
+print couch.info_db("test-db")
+couch.compact_db("test-db")
+document = '{"code" : "null"}'
+couch.save_doc("test-db", document, "foo")
+couch.save_doc("test-db", document, "bar")
+print couch.list_of_docs("test-db")
+couch.save_doc("test-db", document)
+print couch.list_of_docs("test-db","limit=1")
+print couch.open_doc("test-db", "foo")
+couch.delete_doc("test-db", "foo")
+document = {"code":"err"}
+couch.update_doc("test-db", document, "bar")
+map_funcs = {}
+map_funcs["err"] = "function(doc) {if (doc.code == 'err')  emit(doc._id, null)}"
+map_funcs["code"] = "function(doc) {if (doc.code == 'null')  emit(doc._id, null)}"
+couch.create_view("test-db", "javascript", "test-db-view", map_funcs)
+print couch.map("test-db", "test-db-view", "err", 5)
+couch.delete_db("test-db")
+</p>
+<h3 style="background-color:#FFFFFF;color:#FF0000">Global Attributes</h3>
+<table>
+<tr><td>None</td></tr>
+</table>
+<h3 style="background-color:#FFFFFF;color:#FF0000">Classes</h3>
+<table>
+<tr>
+<td><a style="color:#0000FF" href="#Couch">Couch</a></td>
+<td>Class of Simple Python API for CouchDB</td>
+</tr>
+</table>
+<h3 style="background-color:#FFFFFF;color:#FF0000">Functions</h3>
+<table>
+<tr><td>None</td></tr>
+</table>
+<hr /><hr />
+<a NAME="Couch" ID="Couch"></a>
+<h2 style="background-color:#FFFFFF;color:#0000FF">Couch</h2>
+<p>
+    Class of Simple Python API for CouchDB 
+</p>
+<h3 style="background-color:#FFFFFF;color:#FF0000">Derived from</h3>
+None
+<h3 style="background-color:#FFFFFF;color:#FF0000">Class Attributes</h3>
+<table>
+<tr><td>None</td></tr>
+</table>
+<h3 style="background-color:#FFFFFF;color:#FF0000">Methods</h3>
+<table>
+<tr>
+<td><a style="color:#0000FF" href="#Couch.__init__">Couch</a></td>
+<td>Constructor of Couch class</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.compact_db">compact_db</a></td>
+<td>Database compression</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.connect">connect</a></td>
+<td>Http connection</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.create_db">create_db</a></td>
+<td>Create a new database on the server</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.create_view">create_view</a></td>
+<td>Create map view</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.delete">delete</a></td>
+<td>Method DELETE</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.delete_db">delete_db</a></td>
+<td>Deleting a database from the server</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.delete_doc">delete_doc</a></td>
+<td>Delete document from DB</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.get">get</a></td>
+<td>Method GET</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.info_db">info_db</a></td>
+<td>Database information</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.list_of_dbs">list_of_dbs</a></td>
+<td>Listing databases on the server</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.list_of_docs">list_of_docs</a></td>
+<td>Listing documents in DB</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.map">map</a></td>
+<td>Map view</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.open_doc">open_doc</a></td>
+<td>Get document from DB</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.post">post</a></td>
+<td>Method POST</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.put">put</a></td>
+<td>Method PUT</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.save_doc">save_doc</a></td>
+<td>Get document from DB</td>
+</tr><tr>
+<td><a style="color:#0000FF" href="#Couch.update_doc">update_doc</a></td>
+<td>Editing of a document</td>
+</tr>
+</table>
+
+<div align="right"><a style="color:#0000FF" href="#top">Up</a></div>
+<hr />
+</body></html>
